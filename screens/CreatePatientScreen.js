@@ -105,6 +105,7 @@ const CreatePatientScreen = () => {
       <Text style={styles.textTitle}>Patient</Text>
       <Text style={styles.textTitleSub}>Enter Patient Info</Text>
       <View>
+        <Text style={styles.textPlaceholder}>Name</Text>
         <Controller
           name="name"
           control={control}
@@ -123,6 +124,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Email</Text>
         <Controller
           name="email"
           control={control}
@@ -141,6 +143,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Phone number</Text>
         <Controller
           name="phone"
           control={control}
@@ -159,6 +162,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Appointment date</Text>
         <TouchableOpacity onPress={showDatePicker}>
           <Text style={styles.inputGroup}>Appointment date</Text>
         </TouchableOpacity>
@@ -185,6 +189,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Appointment reason</Text>
         <Controller
           name="reason"
           control={control}
@@ -203,6 +208,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Record</Text>
         <Controller
           name="record"
           control={control}
@@ -238,12 +244,16 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 35,
   },
+  textPlaceholder: {
+    color: 'green',
+  },
   inputGroup: {
     flex: 1,
     padding: 0,
     marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
+    borderColor: '#cccccc',
+    borderWidth: 1,
+    borderRadius: 2,
   },
   buttonGroup: {
     padding: 0,
