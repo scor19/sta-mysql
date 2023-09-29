@@ -5,7 +5,7 @@ import { styles } from '../styles/Styles';
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Welcome</Text>
+      <Text style={styles.textTitle}>Welcome</Text>
     </View>
   );
 };
