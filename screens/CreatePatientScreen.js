@@ -3,7 +3,6 @@ import {
   Button,
   TextInput,
   ScrollView,
-  StyleSheet,
   Alert,
   Text,
   TouchableOpacity,
@@ -13,27 +12,16 @@ import { useForm, Controller } from 'react-hook-form';
 import db from '../database/firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import UserDetail from './UserDetail';
-
-// Esquema de validación
-const patientSchema = yup.object().shape({
-  name: yup.string().required('Please, enter a name'),
-  email: yup.string().email().optional(),
-  phone: yup
-    .number()
-    .required('A phone number is required')
-    .typeError('Please, enter a number'),
-  appointment: yup.date().nullable().default('').optional(),
-  reason: yup.string().required('Please, enter an appointment reason'),
-  record: yup.string().optional(),
-});
+import { patientSchema } from '../services/FormValidation';
+import { styles } from '../styles/Styles';
 
 const CreatePatientScreen = () => {
   // Manejo de estado para la librería de fechas
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
+  // Define si se muestra el selector de fecha y hora
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -43,7 +31,6 @@ const CreatePatientScreen = () => {
   };
 
   const [dateRange, setDateRange] = useState([null, null]);
-  const [startDate, endDate] = dateRange;
 
   const handleConfirm = (date) => {
     console.warn('A date has been picked: ', date);
@@ -88,23 +75,12 @@ const CreatePatientScreen = () => {
     saveNewPatient(data);
   };
 
-  // const validate = () => {
-  //   if (!state.name) {
-  //     // Alerta ANDROID
-  //     Alert.alert('Nombre', 'Please, enter a name', [
-  //       { text: 'OK', onPress: () => console.log('OK Pressed') },
-  //     ]);
-  //   }
-  //   if (state.email) {
-
-  //   }
-  // };
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.textTitle}>Patient</Text>
-      <Text style={styles.textTitleSub}>Enter Patient Info</Text>
+      <Text style={styles.textTitleSub}>Patient info</Text>
       <View>
+        <Text style={styles.textPlaceholder}>Name</Text>
         <Controller
           name="name"
           control={control}
@@ -112,7 +88,7 @@ const CreatePatientScreen = () => {
           render={({ field }) => (
             <TextInput
               style={styles.inputGroup}
-              placeholder="Name"
+              placeholder="Federico Pereyra"
               onChangeText={field.onChange}
               value={field.value}
             />
@@ -123,6 +99,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Email (optional)</Text>
         <Controller
           name="email"
           control={control}
@@ -130,7 +107,7 @@ const CreatePatientScreen = () => {
           render={({ field }) => (
             <TextInput
               style={styles.inputGroup}
-              placeholder="Email (optional)"
+              placeholder="fedepereyra@example.com"
               onChangeText={field.onChange}
               value={field.value}
             />
@@ -141,6 +118,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Phone number</Text>
         <Controller
           name="phone"
           control={control}
@@ -148,7 +126,7 @@ const CreatePatientScreen = () => {
           render={({ field }) => (
             <TextInput
               style={styles.inputGroup}
-              placeholder="Phone"
+              placeholder="1133401958"
               onChangeText={field.onChange}
               value={field.value}
             />
@@ -159,8 +137,9 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Appointment date</Text>
         <TouchableOpacity onPress={showDatePicker}>
-          <Text style={styles.inputGroup}>Appointment date</Text>
+          <Text style={styles.datePickerStyle}>Select date</Text>
         </TouchableOpacity>
         <Controller
           name="appointment"
@@ -185,6 +164,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Appointment reason</Text>
         <Controller
           name="reason"
           control={control}
@@ -192,7 +172,7 @@ const CreatePatientScreen = () => {
           render={({ field }) => (
             <TextInput
               style={styles.inputGroup}
-              placeholder="Appointment reason"
+              placeholder="Medical check-up"
               onChangeText={field.onChange}
               value={field.value}
             />
@@ -203,6 +183,7 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View>
+        <Text style={styles.textPlaceholder}>Record (optional)</Text>
         <Controller
           name="record"
           control={control}
@@ -210,7 +191,7 @@ const CreatePatientScreen = () => {
           render={({ field }) => (
             <TextInput
               style={styles.inputGroup}
-              placeholder="Record (optional)"
+              placeholder="Celiac, low blood presure..."
               onChangeText={field.onChange}
               value={field.value}
             />
@@ -227,42 +208,10 @@ const CreatePatientScreen = () => {
           color="#32CD32"
           onPress={handleSubmit(onSubmit)}
         />
-        <Button title="Ver turnos" color="#32CD32" onPress={<UserDetail />} />
+        <Button title="Turn list" color="#32CD32" onPress={<UserDetail />} />
       </View>
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 35,
-  },
-  inputGroup: {
-    flex: 1,
-    padding: 0,
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
-  },
-  buttonGroup: {
-    padding: 0,
-    marginBottom: 15,
-  },
-  textTitle: {
-    flex: 1,
-    color: 'black',
-    fontSize: 45,
-    fontWeight: 'bold',
-  },
-  textTitleSub: {
-    flex: 1,
-    color: 'gray',
-    marginVertical: 10,
-  },
-  textError: {
-    color: 'red',
-  },
-});
 
 export default CreatePatientScreen;
