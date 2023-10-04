@@ -4,7 +4,7 @@ import React from 'react';
 const UserDetail = () => {
   return (
     <View>
-      <Text>Esta es la lista de turnos</Text>
+      <Text>Esta es la lista detallada</Text>
     </View>
   );
 };

@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CreatePatientScreen from './screens/CreatePatientScreen';
 import UserDetail from './screens/UserDetail';
-import UserList from './screens/UserList';
 import WelcomeScreen from './screens/WelcomeScreen';
 
 // Se importan las screens
 import Drawer from './navigation/Drawer';
+import TurnList from './screens/TurnList';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +20,7 @@ function MyStack() {
         component={CreatePatientScreen}
       />
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      <Stack.Screen name="UserList" component={UserList} />
+      <Stack.Screen name="TurnList" component={TurnList} />
       <Stack.Screen name="UserDetail" component={UserDetail} />
     </Stack.Navigator>
   );

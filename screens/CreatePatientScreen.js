@@ -5,62 +5,66 @@ import {
   ScrollView,
   Alert,
   Text,
-  TouchableOpacity,
+  Image,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import db from '../database/firebase';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, addDoc, collection } from 'firebase/firestore';
 import { yupResolver } from '@hookform/resolvers/yup';
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import UserDetail from './UserDetail';
 import { patientSchema } from '../services/FormValidation';
 import { styles } from '../styles/Styles';
+import { AntDesign } from '@expo/vector-icons';
 
 const CreatePatientScreen = () => {
-  // Manejo de estado para la librería de fechas
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  // Manejo de estados para la librería de fechas
+  // const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  // const [dateRange, setDateRange] = useState([null, null]);
+
+  const [iconColor, setIconColor] = useState('#50bb52');
 
   // Define si se muestra el selector de fecha y hora
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
+  // const showDatePicker = () => {
+  //   setDatePickerVisibility(true);
+  // };
 
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
+  // const hideDatePicker = () => {
+  //   setDatePickerVisibility(false);
+  // };
 
-  const [dateRange, setDateRange] = useState([null, null]);
+  // Confirma la fecha y hora seleccionada, envía el warn para debuggear
+  // const handleConfirm = (date) => {
+  //   console.warn('A date has been picked: ', date);
+  //   formatDate(date);
+  //   hideDatePicker();
+  // };
 
-  const handleConfirm = (date) => {
-    console.warn('A date has been picked: ', date);
-    formatDate(date);
-    hideDatePicker();
-  };
+  // Formato a la selección de fecha
+  // const formatDate = (rawDate) => {
+  //   let date = new Date(rawDate);
 
-  const formatDate = (rawDate) => {
-    let date = new Date(rawDate);
+  //   let year = date.getFullYear();
+  //   let month = date.getMonth();
+  //   let day = date.getDate();
 
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let day = date.getDate();
+  //   return `${day}-${month}-${year}`;
+  // };
 
-    return `${day}-${month}-${year}`;
-  };
+  // Define el hook de formularios de react
 
-  // Resolver para validación de Yup
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(patientSchema), // Especifica el resolver aquí
+    resolver: yupResolver(patientSchema), // Especifica el resolver para la validación de los inputs
   });
 
   // Envía los datos a firestore
   const saveNewPatient = async (data) => {
     try {
-      await setDoc(doc(db, 'patient', 'patient-id'), data);
+      await addDoc(collection(db, 'patient'), data);
       Alert.alert(
         'Patient added succesfully',
         'The patient was saved in the database',
@@ -86,12 +90,14 @@ const CreatePatientScreen = () => {
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextInput
-              style={styles.inputGroup}
-              placeholder="Federico Pereyra"
-              onChangeText={field.onChange}
-              value={field.value}
-            />
+            <View style={styles.inputGroup}>
+              <AntDesign name="right" size={20} color={iconColor} />
+              <TextInput
+                placeholder="Federico Pereyra"
+                onChangeText={field.onChange}
+                value={field.value}
+              />
+            </View>
           )}
         />
         {errors.name && (
@@ -105,12 +111,14 @@ const CreatePatientScreen = () => {
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextInput
-              style={styles.inputGroup}
-              placeholder="fedepereyra@example.com"
-              onChangeText={field.onChange}
-              value={field.value}
-            />
+            <View style={styles.inputGroup}>
+              <AntDesign name="right" size={20} color="#50bb52" />
+              <TextInput
+                placeholder="fedepereyra@example.com"
+                onChangeText={field.onChange}
+                value={field.value}
+              />
+            </View>
           )}
         />
         {errors.email && (
@@ -124,19 +132,21 @@ const CreatePatientScreen = () => {
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextInput
-              style={styles.inputGroup}
-              placeholder="1133401958"
-              onChangeText={field.onChange}
-              value={field.value}
-            />
+            <View style={styles.inputGroup}>
+              <AntDesign name="right" size={20} color="#50bb52" />
+              <TextInput
+                placeholder="1133401958"
+                onChangeText={field.onChange}
+                value={field.value}
+              />
+            </View>
           )}
         />
         {errors.phone && (
           <Text style={styles.textError}>{errors.phone.message}</Text>
         )}
       </View>
-      <View>
+      {/* <View> // Codigo del date picker, aún no implementado.
         <Text style={styles.textPlaceholder}>Appointment date</Text>
         <TouchableOpacity onPress={showDatePicker}>
           <Text style={styles.datePickerStyle}>Select date</Text>
@@ -162,7 +172,7 @@ const CreatePatientScreen = () => {
         {errors.appointment && (
           <Text style={styles.textError}>{errors.appointment.message}</Text>
         )}
-      </View>
+      </View> */}
       <View>
         <Text style={styles.textPlaceholder}>Appointment reason</Text>
         <Controller
@@ -170,12 +180,14 @@ const CreatePatientScreen = () => {
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextInput
-              style={styles.inputGroup}
-              placeholder="Medical check-up"
-              onChangeText={field.onChange}
-              value={field.value}
-            />
+            <View style={styles.inputGroup}>
+              <AntDesign name="right" size={20} color="#50bb52" />
+              <TextInput
+                placeholder="Medical check-up"
+                onChangeText={field.onChange}
+                value={field.value}
+              />
+            </View>
           )}
         />
         {errors.reason && (
@@ -189,26 +201,22 @@ const CreatePatientScreen = () => {
           control={control}
           defaultValue=""
           render={({ field }) => (
-            <TextInput
-              style={styles.inputGroup}
-              placeholder="Celiac, low blood presure..."
-              onChangeText={field.onChange}
-              value={field.value}
-            />
+            <View style={styles.inputGroup}>
+              <AntDesign name="right" size={20} color="#50bb52" />
+              <TextInput
+                placeholder="Celiac, low blood presure..."
+                onChangeText={field.onChange}
+                value={field.value}
+              />
+            </View>
           )}
         />
         {errors.record && (
           <Text style={styles.textError}>{errors.record.message}</Text>
         )}
       </View>
-      <View style={styles.inputGroup}>
-        <Button
-          style={styles.buttonGroup}
-          title="Save"
-          color="#32CD32"
-          onPress={handleSubmit(onSubmit)}
-        />
-        <Button title="Turn list" color="#32CD32" onPress={<UserDetail />} />
+      <View style={styles.buttonGroup}>
+        <Button title="Save" color="#32CD32" onPress={handleSubmit(onSubmit)} />
       </View>
     </ScrollView>
   );
