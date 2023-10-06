@@ -1,35 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import CreatePatientScreen from './screens/CreatePatientScreen';
-import UserDetail from './screens/UserDetail';
-import WelcomeScreen from './screens/WelcomeScreen';
 
 // Se importan las screens
 import Drawer from './navigation/Drawer';
 import TurnList from './screens/TurnList';
+import Login from './screens/Login';
+import SignUp from './screens/SignUp';
+import WelcomeScreen from './screens/WelcomeScreen';
+import UserDetail from './screens/UserDetail';
+import CreatePatientScreen from './screens/CreatePatientScreen';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { FIREBASE_AUTH } from './database/firebase';
 
 const Stack = createNativeStackNavigator();
 
-function MyStack() {
+const InsideStack = createNativeStackNavigator();
+
+function InsideLayout() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Drawer" component={Drawer} />
-      <Stack.Screen
+    <InsideStack.Navigator screenOptions={{ headerShown: false }}>
+      <InsideStack.Screen name="Drawer" component={Drawer} />
+      <InsideStack.Screen
         name="CreatePatientScreen"
         component={CreatePatientScreen}
       />
-      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      <Stack.Screen name="TurnList" component={TurnList} />
-      <Stack.Screen name="UserDetail" component={UserDetail} />
-    </Stack.Navigator>
+      <InsideStack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      <InsideStack.Screen name="TurnList" component={TurnList} />
+      <InsideStack.Screen name="UserDetail" component={UserDetail} />
+    </InsideStack.Navigator>
   );
 }
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      console.log('user', user);
+      setUser(user);
+    });
+  }, []);
+
   return (
     <NavigationContainer>
-      <MyStack />
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{ headerShown: false }}
+      >
+        {user ? (
+          <Stack.Screen name="Inside" component={InsideLayout} />
+        ) : (
+          <Stack.Screen name="Login" component={Login} />
+        )}
+        <Stack.Screen name="SignUp" component={SignUp} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

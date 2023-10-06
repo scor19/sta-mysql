@@ -16,3 +16,11 @@ export const patientSchema = yup.object().shape({
   reason: yup.string().required('Please, enter an appointment reason'),
   record: yup.string().optional(),
 });
+
+export const loginSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Please, enter an email'),
+  password: yup.string().required('Please, enter a password'),
+});

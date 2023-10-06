@@ -6,11 +6,26 @@ const styles = StyleSheet.create({
     padding: 30,
     backgroundColor: 'white',
   },
+  containerJustify: {
+    flex: 1,
+    padding: 30,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+  },
   textPlaceholder: {
     color: '#009929',
     marginBottom: 2,
     marginTop: 10,
     fontWeight: '500',
+  },
+  inputSingle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    borderColor: '#cccccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    backgroundColor: 'white',
   },
   inputGroup: {
     flex: 1,
@@ -21,6 +36,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: 'white',
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    padding: 0,
   },
   inputGroupError: {
     flex: 1,
@@ -63,7 +83,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   textTitleSub: {
-    flex: 1,
     color: '#333333',
     marginVertical: 10,
     fontSize: 15,
@@ -101,6 +120,12 @@ const styles = StyleSheet.create({
   },
   patientReason: {
     color: '#333333',
+  },
+  iconLeft: {
+    marginRight: 10,
+  },
+  iconRight: {
+    marginLeft: 10,
   },
 });
 

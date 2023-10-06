@@ -5,7 +5,7 @@ import {
   ScrollView,
   Alert,
   Text,
-  Image,
+  TouchableOpacity,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
@@ -80,7 +80,7 @@ const CreatePatientScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container]}>
       <Text style={styles.textTitle}>Patient</Text>
       <Text style={styles.textTitleSub}>Patient info</Text>
       <View>
@@ -216,7 +216,19 @@ const CreatePatientScreen = () => {
         )}
       </View>
       <View style={styles.buttonGroup}>
-        <Button title="Save" color="#32CD32" onPress={handleSubmit(onSubmit)} />
+        <TouchableOpacity
+          onPress={handleSubmit(onSubmit)}
+          style={[
+            styles.inputElevation,
+            { backgroundColor: '#50bb52', padding: 10, borderRadius: 15 },
+          ]}
+        >
+          <Text
+            style={{ color: '#fff', alignSelf: 'center', fontWeight: 'bold' }}
+          >
+            SAVE
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
