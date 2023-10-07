@@ -25,10 +25,10 @@ const SignUp = () => {
   });
 
   const onSubmit = (data) => {
-    signUp(data);
+    register(data);
   };
 
-  const signUp = async (data) => {
+  const register = async (data) => {
     try {
       const res = await createUserWithEmailAndPassword(
         auth,
@@ -36,11 +36,12 @@ const SignUp = () => {
         data.password
       );
       console.log(res);
-      Alert.alert('Check your email!');
+      Alert.alert('Account was created!');
     } catch (error) {
       console.log(error);
       Alert.alert('Sign up failed:', error.message);
     }
+    FIREBASE_AUTH.signOut();
   };
 
   return (
@@ -150,7 +151,7 @@ const SignUp = () => {
             </Text>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Login');
+                navigation.replace('Login');
               }}
             >
               <Text
