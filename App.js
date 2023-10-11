@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { FIREBASE_AUTH } from './database/firebase';
 
 // Se importan las screens
 import Drawer from './navigation/Drawer';
@@ -8,10 +10,8 @@ import TurnList from './screens/TurnList';
 import Login from './screens/Login';
 import SignUp from './screens/SignUp';
 import WelcomeScreen from './screens/WelcomeScreen';
-import UserDetail from './screens/UserDetail';
+import UserEdit from './screens/UserEdit';
 import CreatePatientScreen from './screens/CreatePatientScreen';
-import { User, onAuthStateChanged } from 'firebase/auth';
-import { FIREBASE_AUTH } from './database/firebase';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +27,7 @@ function InsideLayout() {
       />
       <InsideStack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       <InsideStack.Screen name="TurnList" component={TurnList} />
-      <InsideStack.Screen name="UserDetail" component={UserDetail} />
+      <InsideStack.Screen name="UserEdit" component={UserEdit} />
     </InsideStack.Navigator>
   );
 }

@@ -127,6 +127,25 @@ const styles = StyleSheet.create({
   iconRight: {
     marginLeft: 10,
   },
+  icon: {
+    marginLeft: 10,
+    padding: 5,
+    borderColor: '#cccccc',
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  image: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
+  },
 });
 
 export { styles };

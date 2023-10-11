@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from '../styles/Styles';
 import { FIREBASE_AUTH } from '../database/firebase';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,8 +16,11 @@ import { loginSchema } from '../services/FormValidation';
 import { LinearGradient } from 'expo-linear-gradient';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(true);
+
   const auth = FIREBASE_AUTH;
 
   const navigation = useNavigation();
@@ -31,6 +34,7 @@ const Login = () => {
   });
 
   const onSubmit = (data) => {
+    saveEmail(data);
     signIn(data);
   };
 
@@ -45,6 +49,15 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       Alert.alert('Sign in failed: ', error.message);
+    }
+  };
+
+  const saveEmail = async (data) => {
+    try {
+      await AsyncStorage.setItem('email', data.email);
+      console.log('Email saved at login:', data.email);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -118,17 +131,21 @@ const Login = () => {
                   />
                   <TextInput
                     style={styles.input}
-                    secureTextEntry={true}
+                    secureTextEntry={showPassword ? true : false}
                     onChangeText={field.onChange}
                     value={field.value}
                     autoCapitalize="none"
                   />
-                  <AntDesign
-                    name="eye"
-                    size={20}
-                    color={'#50bb52'}
-                    style={styles.iconRight}
-                  />
+                  <TouchableOpacity
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <AntDesign
+                      name="eye"
+                      size={20}
+                      color={'#50bb52'}
+                      style={styles.iconRight}
+                    />
+                  </TouchableOpacity>
                 </View>
               )}
             />

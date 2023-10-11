@@ -12,10 +12,10 @@ const WelcomeScreen = () => {
       style={styles.linearGradient}
     >
       <View style={styles.containerClear}>
-        <Text style={styles.textTitle}>Welcome to Simple Turn App </Text>
+        <Text style={styles.textTitle}>Get started </Text>
         <Text style={styles.textTitleSub}>
           This app is designed for you to have easy control over your patients'
-          schedules.
+          appointments.
           {'\n'}
           {'\n'}
           To add a patient to the list press the button below or use the slide

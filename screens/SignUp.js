@@ -12,6 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 import { KeyboardAvoidingView } from 'react-native';
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(true);
+
   const auth = FIREBASE_AUTH;
 
   const navigation = useNavigation();
@@ -36,7 +38,9 @@ const SignUp = () => {
         data.password
       );
       console.log(res);
-      Alert.alert('Account was created!');
+      Alert.alert('Account was created!', 'You can sign in now', [
+        { text: 'OK', onPress: () => navigation.replace('Login') },
+      ]);
     } catch (error) {
       console.log(error);
       Alert.alert('Sign up failed:', error.message);
@@ -114,17 +118,21 @@ const SignUp = () => {
                   />
                   <TextInput
                     style={styles.input}
-                    secureTextEntry={true}
+                    secureTextEntry={showPassword ? true : false}
                     onChangeText={field.onChange}
                     value={field.value}
                     autoCapitalize="none"
                   />
-                  <AntDesign
-                    name="eye"
-                    size={20}
-                    color={'#50bb52'}
-                    style={styles.iconRight}
-                  />
+                  <TouchableOpacity
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <AntDesign
+                      name="eye"
+                      size={20}
+                      color={'#50bb52'}
+                      style={styles.iconRight}
+                    />
+                  </TouchableOpacity>
                 </View>
               )}
             />
