@@ -13,7 +13,7 @@ const Patient = ({ id, appointment, email, name, phone, reason, record }) => {
     console.log('Handle delete');
     try {
       await deleteDoc(doc(db, 'patient', id));
-      Alert.alert('Deleted', 'The appointment was deleted')
+      Alert.alert('Deleted', 'The appointment was deleted');
     } catch (error) {
       console.log(error);
       Alert.alert('Failed to delete: ', error.message);
@@ -25,11 +25,50 @@ const Patient = ({ id, appointment, email, name, phone, reason, record }) => {
   };
 
   return (
-    <View style={[styles.inputElevation, styles.patientList, { flex: 1, marginHorizontal: 10 }]}>
-      <View style={[styles.inputElevation, { flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-between' }]}>
+    <View
+      style={[
+        styles.inputElevation,
+        styles.patientList,
+        { flex: 1, marginHorizontal: 10 },
+      ]}
+    >
+      <View
+        style={[
+          styles.inputElevation,
+          {
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          },
+        ]}
+      >
         {/* <Text>Id: {id}</Text> */}
-        <Text style={[styles.patientName, { elevation: 3, backgroundColor: 'white', padding: 5, borderRadius: 10 }]}>{name}</Text>
-        <Text style={[styles.patientName, { elevation: 3, backgroundColor: 'white', padding: 5, borderRadius: 10 }]}>{appointment}</Text>
+        <Text
+          style={[
+            styles.patientName,
+            {
+              elevation: 3,
+              backgroundColor: 'white',
+              padding: 5,
+              borderRadius: 10,
+            },
+          ]}
+        >
+          {name}
+        </Text>
+        <Text
+          style={[
+            styles.patientName,
+            {
+              elevation: 3,
+              backgroundColor: 'white',
+              padding: 5,
+              borderRadius: 10,
+            },
+          ]}
+        >
+          {appointment}
+        </Text>
       </View>
       <Text>{email}</Text>
       <Text>{phone}</Text>

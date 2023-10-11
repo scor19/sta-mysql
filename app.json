@@ -4,7 +4,7 @@
     "slug": "simple-turn-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/STA_icon.svg",
+    "icon": "./assets/STA_logo.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/STA_logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.scor18.simpleturnapp"
