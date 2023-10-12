@@ -136,12 +136,15 @@ const CreatePatientScreen = () => {
   return (
     <View style={[styles.container, { justifyContent: 'center' }]}>
       <KeyboardAvoidingView behavior="padding">
+      <View style={{ flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', alignSelf: 'center'}}>
+      <AntDesign name="adduser" size={96} color="#50bb52" />
         <Text
-          style={[styles.textTitle, { alignSelf: 'center', marginBottom: 20 }]}
+          style={[styles.textTitle, { alignSelf: 'center', marginBottom: 10 }]}
         >
           Patient
         </Text>
-        <Text style={styles.textTitleSub}>Patient info</Text>
+        </View>
+        <Text style={[styles.textTitleSub, { marginBottom: 0 }]}>Add an appointment</Text>
         <View>
           <Text style={styles.textPlaceholder}>Name</Text>
           <Controller
@@ -252,12 +255,14 @@ const CreatePatientScreen = () => {
             control={control}
             defaultValue=""
             render={({ field }) => (
-              <View style={styles.inputSingle}>
+              <View style={[styles.inputSingle]}>
                 <AntDesign name="right" size={20} color="#50bb52" />
                 <TextInput
                   placeholder="Medical check-up"
                   onChangeText={field.onChange}
                   value={field.value}
+                  multiline={true}
+                  style={{ flex: 1, flexWrap: 'wrap', width: '100%' }}
                 />
               </View>
             )}
@@ -279,6 +284,8 @@ const CreatePatientScreen = () => {
                   placeholder="Celiac, low blood presure..."
                   onChangeText={field.onChange}
                   value={field.value}
+                  multiline={true}
+                  style={{ flex: 1, flexWrap: 'wrap', width: '100%' }}
                 />
               </View>
             )}
@@ -298,7 +305,7 @@ const CreatePatientScreen = () => {
             <Text
               style={{ color: '#fff', alignSelf: 'center', fontWeight: 'bold' }}
             >
-              SAVE
+              Save
             </Text>
           </TouchableOpacity>
         </View>

@@ -5,6 +5,8 @@ import {
   TextInput,
   Keyboard,
   Alert,
+  KeyboardAvoidingView,
+  ScrollView
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -168,6 +170,7 @@ const UserEdit = ({ route }) => {
     <View style={[styles.container, { justifyContent: 'center' }]}>
       <Text style={styles.textTitle}>Edit appointment</Text>
       <Text style={styles.textTitleSub}>Patient info</Text>
+      <KeyboardAvoidingView behavior="padding">
       <View>
         <Text style={styles.textPlaceholder}>Name</Text>
         <Controller
@@ -331,15 +334,37 @@ const UserEdit = ({ route }) => {
           <Text
             style={{ color: '#fff', alignSelf: 'center', fontWeight: 'bold' }}
           >
-            SAVE
+            Save
           </Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <TouchableOpacity onPress={handleGoBack}>
-          <Text>Go back</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity
+          onPress={handleGoBack}
+          style={[
+            styles.inputElevation,
+            {
+              backgroundColor: '#50bb52',
+              padding: 10,
+              borderRadius: 15,
+              flexDirection: 'row',
+            },
+          ]}
+        >
+          <AntDesign
+            name="back"
+            size={24}
+            color="white"
+            style={styles.iconLeft}
+          />
+          <Text
+            style={{ color: '#fff', alignSelf: 'center', fontWeight: 'bold' }}
+          >
+            Go back
+          </Text>
         </TouchableOpacity>
       </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

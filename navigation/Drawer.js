@@ -11,10 +11,10 @@ const Drawer = () => {
     <DrawerNavigator.Navigator>
       <DrawerNavigator.Screen name="Home" component={WelcomeScreen} />
       <DrawerNavigator.Screen
-        name="Add patient"
+        name="Add appointment"
         component={CreatePatientScreen}
       />
-      <DrawerNavigator.Screen name="Turn list" component={TurnList} />
+      <DrawerNavigator.Screen name="Turns" component={TurnList} />
     </DrawerNavigator.Navigator>
   );
 };
