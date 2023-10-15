@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
   return (
     <View style={{ flex: 1 }}>
       <LinearGradient
-        colors={['#A9DFBF', '#ADD8E6']}
+        colors={['#C8E6C9', 'white']}
         start={[0.1, 0.1]}
         style={styles.linearGradient}
       >
@@ -30,14 +30,14 @@ const WelcomeScreen = () => {
                 height: 370,
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderWidth: 2,
+                borderWidth: 1,
                 borderRadius: 10,
-                borderColor: '#000',
+                borderColor: '#459B4B',
                 padding: 10,
               }}
             >
-              <Text style={[styles.textTitle, {color: '#000'}]}>Get started </Text>
-              <Text style={[styles.textTitleSub, {color: '#000'}]}>
+              <Text style={[styles.textTitle, {color: '#333333'}]}>Get started </Text>
+              <Text style={[styles.textTitleSub, {color: '#333333'}]}>
                 This app is designed for you to have easy control over your
                 patients' appointments.
                 {'\n'}
@@ -64,11 +64,11 @@ const WelcomeScreen = () => {
           <AntDesign
             name="logout"
             size={24}
-            color="white"
+            color="#333333"
             style={styles.iconLeft}
           />
           <Text
-            style={{ color: '#fff', alignSelf: 'center', fontWeight: 'bold' }}
+            style={{ color: '#333333', alignSelf: 'center', fontWeight: 'bold' }}
           >
             Sign Out
           </Text>
