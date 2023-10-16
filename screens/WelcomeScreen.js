@@ -32,21 +32,21 @@ const WelcomeScreen = () => {
                 alignItems: 'center',
                 borderWidth: 1,
                 borderRadius: 10,
-                borderColor: '#459B4B',
+                borderColor: '#CCCCCC',
                 padding: 10,
               }}
             >
-              <Text style={[styles.textTitle, {color: '#333333'}]}>Get started </Text>
+              <Text style={[styles.textTitle, {color: '#333333', marginBottom: 15}]}>Get started </Text>
               <Text style={[styles.textTitleSub, {color: '#333333'}]}>
                 This app is designed for you to have easy control over your
                 patients' appointments.
                 {'\n'}
                 {'\n'}
-                To add a patient use the slide menu on the left.
+                To add a patient use the tabs below.
                 {'\n'}
                 {'\n'}
-                You can also edit your appointments at any time. Just slide and
-                press on "Turns".
+                You can also see and edit your appointments at any time. Just
+                press "Turns" on your tab bar.
               </Text>
               <View style={[styles.buttonGroup ,{ flexDirection: 'row' }]}>
         <TouchableOpacity

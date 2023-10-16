@@ -15,21 +15,22 @@ const Drawer = () => {
           let iconName;
 
           if (route.name === 'Home') {
-            iconName = focused ? 'user' : 'user';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'user' : 'user';
+            iconName = focused ? 'home' : 'home';
+          } else if (route.name === 'Add patient') {
+            iconName = focused ? 'adduser' : 'adduser';
+          } else if (route.name === 'Appointments') {
+            iconName = focused ? 'calendar' : 'calendar';
           }
 
-          // You can return any component that you like here!
-          return <AntDesign name="user" size={24} color="black" />;
+          return <AntDesign name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#50bb52',
         tabBarInactiveTintColor: 'gray',
       })}
     >
       <Tab.Screen name="Home" component={WelcomeScreen} />
-      <Tab.Screen name="Add appointment" component={CreatePatientScreen} />
-      <Tab.Screen name="Turns" component={TurnList} />
+      <Tab.Screen name="Add patient" component={CreatePatientScreen} />
+      <Tab.Screen name="Appointments" component={TurnList} />
     </Tab.Navigator>
   );
 };

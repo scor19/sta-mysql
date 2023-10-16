@@ -46,13 +46,29 @@ const UserList = () => {
 
   return (
     <ScrollView>
-    <View style={{ flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', alignSelf: 'center'}}>
-    <AntDesign name="profile" size={40} color="#50bb52" style={[styles.iconLeft]} />
-      <Text
-        style={[styles.textTitle, { alignSelf: 'center', marginVertical: 15 }]}
+      <View
+        style={{
+          flexWrap: 'wrap',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignSelf: 'center',
+        }}
       >
-        Appointments
-      </Text>
+        <AntDesign
+          name="profile"
+          size={40}
+          color="#50bb52"
+          style={[styles.iconLeft]}
+        />
+        <Text
+          style={[
+            styles.textTitle,
+            { alignSelf: 'center', marginVertical: 15 },
+          ]}
+        >
+          Appointments
+        </Text>
       </View>
       {patients.map((patient) => (
         <Patient key={patient.id} {...patient} />
