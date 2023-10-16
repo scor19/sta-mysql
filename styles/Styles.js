@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   patientName: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 5,
   },
@@ -146,6 +146,16 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
+  elevation: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  }
 });
 
 export { styles };

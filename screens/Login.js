@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Alert,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { styles } from '../styles/Styles';
 import { FIREBASE_AUTH } from '../database/firebase';
 import { AntDesign } from '@expo/vector-icons';

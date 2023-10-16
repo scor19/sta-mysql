@@ -6,13 +6,12 @@ import {
   Keyboard,
   Alert,
   KeyboardAvoidingView,
-  ScrollView
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from '../styles/Styles';
 import db from '../database/firebase';
-import { doc, getDoc, collection, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import DateTimePicker from 'react-native-modal-datetime-picker';

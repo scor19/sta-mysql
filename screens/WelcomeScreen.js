@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
   return (
     <View style={{ flex: 1 }}>
       <LinearGradient
-        colors={['#A9DFBF', '#ADD8E6']}
+        colors={['#C8E6C9', 'white']}
         start={[0.1, 0.1]}
         style={styles.linearGradient}
       >
@@ -30,23 +30,23 @@ const WelcomeScreen = () => {
                 height: 370,
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderWidth: 2,
+                borderWidth: 1,
                 borderRadius: 10,
-                borderColor: '#000',
+                borderColor: '#CCCCCC',
                 padding: 10,
               }}
             >
-              <Text style={[styles.textTitle, {color: '#000'}]}>Get started </Text>
-              <Text style={[styles.textTitleSub, {color: '#000'}]}>
+              <Text style={[styles.textTitle, {color: '#333333', marginBottom: 15}]}>Get started </Text>
+              <Text style={[styles.textTitleSub, {color: '#333333'}]}>
                 This app is designed for you to have easy control over your
                 patients' appointments.
                 {'\n'}
                 {'\n'}
-                To add a patient use the slide menu on the left.
+                To add a patient use the tabs below.
                 {'\n'}
                 {'\n'}
-                You can also edit your appointments at any time. Just slide and
-                press on "Turns".
+                You can also see and edit your appointments at any time. Just
+                press "Turns" on your tab bar.
               </Text>
               <View style={[styles.buttonGroup ,{ flexDirection: 'row' }]}>
         <TouchableOpacity
@@ -64,11 +64,11 @@ const WelcomeScreen = () => {
           <AntDesign
             name="logout"
             size={24}
-            color="white"
+            color="#333333"
             style={styles.iconLeft}
           />
           <Text
-            style={{ color: '#fff', alignSelf: 'center', fontWeight: 'bold' }}
+            style={{ color: '#333333', alignSelf: 'center', fontWeight: 'bold' }}
           >
             Sign Out
           </Text>

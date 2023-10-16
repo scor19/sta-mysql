@@ -8,7 +8,7 @@ import {
   Keyboard,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { useForm, Controller, reset } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import db from '../database/firebase';
 import { addDoc, collection } from 'firebase/firestore';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -144,7 +144,6 @@ const CreatePatientScreen = () => {
           Patient
         </Text>
         </View>
-        <Text style={[styles.textTitleSub, { marginBottom: 0 }]}>Add an appointment</Text>
         <View>
           <Text style={styles.textPlaceholder}>Name</Text>
           <Controller
