@@ -19,10 +19,10 @@ This application allows medical professionals to efficiently manage their appoin
 
 ## Installation
 
-1. **Clone Repository**: Clone this repository to your local machine using `git clone https://github.com/your-username/sta-mysql.git`.
-2. **Install Dependencies**: Navigate to the project directory and install dependencies using `npm install`.
-3. **Set Up MySQL Database**: Set up MySQL database and configure credentials. Update MySQL configuration in `config/db.js` with your credentials.
-4. **Start Backend Server**: Start the backend server using `npm run start:server`. The server will be hosted at `http://localhost:3001`.
+1. **Clone Repository**: Clone this repository to your local machine using `git clone https://github.com/scor19/sta-mysql.git`.
+2. **Install Dependencies**: Navigate to the project directories and install dependencies using `npm install`.
+3. **Set Up MySQL Database**: Set up MySQL database and configure credentials. Update MySQL configuration in `db.js` with your credentials.
+4. **Start Backend Server**: Start the backend server using `npm start` on the server directory. The server will be hosted at `http://localhost:3001`.
 5. **Start Frontend Application**: Start the frontend application using `npm start`. The app will be served at `http://localhost:3000`.
 
 ## Notes
